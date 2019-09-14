@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title%}
+Home Page
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h3>Welcome</h3>
+    <p>{{ user.username }}</p>
+    <p> Your Email is: {{ user.email }}</p>
+    <br>
+    <hr style="border-top: dotted 1px;" />
+    <h4>All Categories:</h4>
+    {% for obj in object %}
+     <li>{{ obj.category_name }}</li>
+    <p>{{ obj.category_description }}</p>
+    {% endfor %}
+    <hr style="border-top: dotted 1px;" />
+    <a href="{% url 'add_category' %}">Add New Category</a>
+    <br>
+    <a href="{% url 'logout' %}">Log Out</a>
+{% else %}
+    <p>You are not logged in.</p>
+    <a href="{% url 'login' %}">Log In</a>
+    <br>
+    <a href="{% url 'signup' %}">Sign Up</a>
+
+{% endif %}
+{% endblock %}

@@ -18,12 +18,15 @@ from django.urls import path
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from authentication.views import signup
+from tasks.views import add_category,home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    #path('', TemplateView.as_view(template_name='task/home.html'), name='home'),
+    path('', home, name='home'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('signup/', signup, name='signup'),
+    path('add-category/', add_category, name='add_category'),
 
 ]
